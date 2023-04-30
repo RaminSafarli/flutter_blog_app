@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 import 'package:flutter_blog/models/news.dart';
 
 class DetailPage extends StatefulWidget {
   final int pageIndex;
+  final List data;
 
-  const DetailPage(Key? key, this.pageIndex) : super(key: key);
+  const DetailPage(Key? key, this.pageIndex, this.data) : super(key: key);
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -16,6 +16,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     int detailIndex = widget.pageIndex;
+    List myData = widget.data;
     return Scaffold(
       body: Stack(
         children: [
@@ -38,7 +39,7 @@ class _DetailPageState extends State<DetailPage> {
               SliverAppBar(
                 backgroundColor: Colors.green,
                 title: Text(
-                  "${news[detailIndex]["title"]}",
+                  "${myData[detailIndex]["title"]}",
                   overflow: TextOverflow.ellipsis,
                 ),
                 pinned: true,
@@ -46,7 +47,7 @@ class _DetailPageState extends State<DetailPage> {
                 expandedHeight: 250,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.network(
-                    news[detailIndex]["image"],
+                    myData[detailIndex]["image"],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -55,13 +56,13 @@ class _DetailPageState extends State<DetailPage> {
                 child: Column(
                   children: [
                     Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                      decoration: const BoxDecoration(
-                          color: Colors.yellow
-                      ),
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 5),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 5),
+                      decoration: const BoxDecoration(color: Colors.yellow),
                       child: Text(
-                        "${news[detailIndex]["title"]}",
+                        "${myData[detailIndex]["title"]}",
                         style: const TextStyle(
                           color: Colors.green,
                           fontSize: 25,
@@ -69,13 +70,13 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                      decoration: const BoxDecoration(
-                        color: Colors.green
-                      ),
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 5),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 5),
+                      decoration: const BoxDecoration(color: Colors.green),
                       child: Text(
-                        "${news[detailIndex]["content"]}",
+                        "${myData[detailIndex]["content"]}",
                         style: const TextStyle(
                           color: Colors.yellow,
                           fontSize: 15,
